@@ -6,7 +6,7 @@ public class Main {
     System.out.println(DisplayMessages.ENTER_INPUT);
     SinhFunction sinhFunction = new SinhFunction();
     try {
-      sinhFunction.initCalculation();
+      sinhFunction.init();
     } catch (Exception e) {
       System.out.println(DisplayMessages.PROGRAM_STOPPED_ERROR_MESSAGE);
       System.out.println(e.getMessage());
