@@ -1,0 +1,98 @@
+\documentclass[letterpaper, 11pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{titlesec}
+\usepackage{fullpage} % changes the margin
+\usepackage{graphicx} %package to manage images
+\graphicspath{ {./images/} }
+\usepackage{listings}
+
+\begin{document}
+\begin{titlepage}
+\vspace*{0.7in}
+\begin{center}
+\begin{figure}[htb]
+\begin{center}
+
+\end{center}
+\end{figure}
+\vspace*{0.3in}
+\begin{Large}
+\textbf{SOEN 6011} \\
+\end{Large}
+\vspace*{0.1in}
+\begin{Large}
+\end{Large}
+\vspace*{0.9in}
+\begin{Large}
+\textbf{$sinh(x)$} \\
+\end{Large}
+\vspace*{0.9in}
+\begin{Large} 
+
+
+\textbf{Problem - 4} \\
+Error Handling, Debugger and Quality Attributes\\
+\end{Large}
+\vspace*{0.625in}
+\rule{80mm}{0.1mm}\\
+\vspace*{0.1in}
+\begin{large}
+\textbf{Author} \\
+\vspace*{0.1in}
+Kolimi Dineshkumar Babu
+\vspace*{0.3in}
+\date{\normalsize\today} 
+\end{large}
+\end{center}
+\date{\normalsize\today} 
+\end{titlepage}
+
+\pagebreak
+
+\section*{\centering{Problem 4 - F3: $sinh(x)$}}
+\normalsize {SOEN 6011 - Summer 2022} \hfill \textbf{Kolimi Dineshkumar Babu} \\
+\textbf{ Software Engineering Processes}  \hfill \textbf{40094976} \\
+\hfill Repository address : \url{https://github.com/dineshkumarkolimi/Soen6011}
+
+\section*{\centering{Implementation Difficulties}}
+\normalsize{There were mainly 2 difficulties to making the function implementation efficient and accurate. \\
+
+\subsection*{Difficulty 1}
+The second problem was a binary floating point limitation of the double type. The integral result of the function with integer inputs was verified through testing to be accurate to at least 12 digits using the built-in Java $Math.sinh(x)$ function; however, the accuracy of decimal values varied in part due to the multiplication of the integral result by the decimal half. A $pm$ $infty$ value was returned when $e$ was increased to a value bigger than $pm$709 because doubles have a size limit.Due to an unsuccessful attempt to programme a new type that could handle math on extremely large decimal numbers with no floating point error and arbitrary precision, the cap for values of the integral and numerator component of the rationalised decimal remained $pm$ $e(709)$. \\\\
+Due to the aforementioned two issues, calculations beyond $pm$ 709 returned $pm$ $infty$ as is common for doubles, and there was a considerable reduction in accuracy for values with decimals that either could not reduce into fractions with small integers or were just too large to calculate the GCD rapidly.}
+\subsection*{Difficulty 2}
+The initial issue was the run-time of the root functions and largest common denominator. Any gains from reducing the size of the rational numbers were typically exceeded by the time needed to run the GCD function, which is roughly inversely proportional to the size of the input integers. The trend for the computation time of the root function increased with the root level. \\
+
+\section*{{Code Qualities}}
+Despite the issues with decimal values mentioned above, integral number calculations are extremely accurate. Unit testing and manual testing quickly verified that the values were accurate. The subordinate functions are divided to promote reuse and modularity and maintainability, and the function code is correctly documented with in-depth Javadoc annotations. Magic numbers are defined as constants to allow for future programme changes. Each function's implementation can be called directly without the need to initialise an object because it is all stored within a single static library or utility class.
+\section*{{Error Handling}}
+\normalsize{Issues with the input format are dealt with by the $sinh$ function itself. In order to support numerous number formats and enhance accuracy over binary floating point inputs, it accepts a $String$ as input. If it encounters unparsable data, it will throw a $NumberFormatException$ class.}
+
+\section*{{Checkstyle and Debugging}}
+To verify the formatting of the source code, the Checkstyle tool was employed. Being a plug-in for the Eclipse IDE and having compatibility for both Google and Sun/Oracle styles made it simple to install and use. Although the code was mainly compliant with Checkstyle's rules, it did have a few irregularities. Since they are not modified in the function body, the majority of parameters and constants were afterwards adjusted to be final. Additionally, lines were divided to avoid using too many characters, and an else statement was moved to the line directly after the previous bracket. Given that it was a static utility/library class, the class was also given an empty private constructor to ensure that it could never be constructed.\\\\
+
+
+There were just two issues that stuck out: it was difficult to find flaws like extra spaces on the lines where these "textit faults" were highlighted by Eclipse and/or Checkstyle, and style inconsistencies were labelled as "textit errors" rather than "textit warnings." \\\\ 
+The snapshot of the checkstyle I used for this project is shown below.\\\\
+
+Here are the screenshot of Debugger and Checkstyle which I used in this project respectively.\\\\
+\begin{center}
+    \includegraphics[scale=0.20]{image2.png} \\
+    \begin{figure}[h!]
+    \centering
+        \caption{Debugger screenshot}
+        \label{Debugger screenshot}
+    \end{figure}
+\end{center}
+
+\begin{center}
+    \includegraphics[scale=0.20]{image1.png} \\
+    \begin{figure}[h!]
+    \centering
+        \caption{Checkstyle screenshot}
+        \label{Checkstyle screenshot}
+    \end{figure}
+\end{center}
+\pagebreak
+
+\end{document}

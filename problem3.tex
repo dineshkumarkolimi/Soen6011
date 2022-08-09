@@ -1,0 +1,153 @@
+\documentclass[letterpaper, 11pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{titlesec}
+\usepackage{fullpage} % changes the margin
+\usepackage{graphicx} %package to manage images
+\graphicspath{ {./images/} }
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+
+\begin{document}
+\begin{titlepage}
+\vspace*{0.7in}
+\begin{center}
+\begin{figure}[htb]
+\begin{center}
+
+\end{center}
+\end{figure}
+\vspace*{0.3in}
+\begin{Large}
+\textbf{SOEN 6011} \\
+\end{Large}
+\vspace*{0.1in}
+\begin{Large}
+
+\end{Large}
+\vspace*{0.9in}
+\begin{Large}
+\textbf{$sinh(x)$} \\
+\end{Large}
+\vspace*{0.9in}
+
+
+\begin{Large} 
+\textbf{Problem - 3} \\
+Pseudo-code and Algorithms\\
+\end{Large}
+\vspace*{0.625in}
+\rule{80mm}{0.1mm}\\
+\vspace*{0.1in}
+\begin{large}
+\textbf{Author} \\
+\vspace*{0.1in}
+Kolimi Dineshkumar Babu
+\vspace*{0.3in}
+\date{\normalsize\today} 
+\end{large}
+\end{center}
+\end{titlepage}
+
+\newpage
+\section*{\centering{Problem 3 - F3:$sinh(x)$}}
+\normalsize {SOEN 6011 - Summer 2022} \hfill \textbf{Kolimi Dineshkumar Babu} \\
+\textbf{ Software Engineering Processes}  \hfill \textbf{40094976} \\
+\hfill Repository address : \url{https://github.com/dineshkumarkolimi/Soen6011}
+\\\\
+
+AExponentiation of integers can be achieved using an algorithm by multiplying or dividing 1 by a predetermined number ($e$). Exponentiation is substantially more difficult when working with non-real numbers because there are two different ways to calculate them. Similar to finding the exponent, finding the root necessitates constantly testing your hypotheses until you find the appropriate $nth$ exponent. Therefore, it is necessary to balance calculating time and precision. \\\\
+For calculating real exponents, the natural logarithm, $ln$ $x$, can be related to the exponential function, $e^x$. As an alternative to the previous approach, one can convert real exponents whose values are irrational into rational ones, for instance, $e^\frac{a}{b}$, where $x^a$ is divided by $\sqrt[b]{x}$ and hence is chosen as it is easier to code.  \\\\
+Based on the aforementioned considerations, the power and square root functions are the subordinate functions needed to calculate $sinh(x)$, and in addition to these, a function to determine the greatest common denominator can help decrease fractions to make them less computationally costly. This article contains the algorithms for all of the aforementioned functions, as well as an absolute value function that was designed to be straightforward.
+
+\begin{itemize}
+    \item I have chosen Algorithm 2 for this project in the below listed algorithms.
+\end{itemize}
+
+
+
+\begin{algorithmic}
+\Function{e\_power\_x}{$x$}
+    \State{$sum \gets 1$ }
+    \For{$i \gets max\_steps$ to $0$}
+        \State{$sum \gets 1+x \times sum / i$ }
+    \EndFor \\
+    \Return $sum$
+\EndFunction
+\Function{calculateSinh}{$epowerX,epowerMinusX$}\\
+       \Return{$(epowerX - epowerMinusX) / 2$}\\
+
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+\caption{Taylor Series}
+\begin{algorithmic}
+\State{$max\_steps \gets 15$}
+\Function{intCalculation}{$x$}
+    \State{$e^x \gets e\_power\_x(x)$}
+    \State{$e^x \gets e\_power\_x(-x)$}
+    \Function{calculateSinh}{$epowerX,epowerMinusX$}
+\EndFunction \\
+\end{algorithmic} \\
+
+\begin{algorithm}
+\caption{Power}
+\begin{algorithmic}
+\Function{Power}{$base$, $exp$}
+    \State{$result \gets 1$}
+    \For{$i \gets 0$ to $|exp|$}
+        \If{$exp > 0$}
+            \State{$result \gets result \times base$}
+        \Else
+            \State{$result \gets \frac{result}{base}$}
+        \EndIf \\
+    \Return $result$
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+\caption{Hyperbolic Sine}
+
+\begin{algorithmic}
+\Function{HypSine}{$input$}
+    \If{$input = 0$}
+        \Return{0}
+    \EndIf
+    \State{$intPart \gets input \div 1$, $fractionalNumerator \gets input$ $mod$ $1$}\Comment{Separating the integral and real parts.}
+    \State{$fractionalDenominator \gets 1$}
+    \While{$fractionalNumerator > fractionalDenominator$}
+        \State{$fractionalDenominator \gets fractionalDenominator \times 10$}
+    \EndWhile \\
+    \Call{GCD}{$fractionalNumerator$, $fractionalDenominator$}
+    \State{$left \gets \Call{Power}{e, intPart}$, $right \gets \Call{Power}{e, -intPart}$}
+    \If{$fractionalNumerator > 0$}
+        \State{$numPower \gets \Call{Power}{e, fractionalNumerator}$}
+        \State{$leftRoot = \Call{Root}{fractionalDenominator, numPower}$}
+        \State{$left \gets left \times leftRoot$}
+        \State{$numCalc \gets \Call{Power}{e, -numPower}$}
+        \State{$rightRoot = \Call{Root}{fractionalDenominator, numCalc}$}
+        \State{$right \gets right \times rightRoot$}
+    \EndIf \\
+    \Return{$\frac{left - right}{2}$}
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+
+
+   \begin{thebibliography}{9}
+        \bibitem{}
+        \url{http://www.mathcentre.ac.uk/resources/workbooks/mathcentre}
+
+        \bibitem{}
+        \url{hyperbolicfunctions.pdf}
+
+        \bibitem{}
+        \url{https://www.analyzemath.com/DomainRange/domain_range_functions.html}
+
+    \end{thebibliography}
+
+
+\end{document}
+

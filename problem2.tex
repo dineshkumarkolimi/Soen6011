@@ -1,0 +1,61 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{url}
+\def\infinity{\rotatebox{90}{8}}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=15mm,
+ top=15mm,
+ right=15mm,
+ bottom=15mm
+ }
+
+%! Author = Dineshkumar Babu Kolimi
+%! Date = 2022-08-07
+
+% Preamble
+\usepackage{url}
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\title{SOEN6011}
+\author{Kolimi Dineshkumar Babu - 40094976}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\section*{\centering{$sinh(x)$}}
+\section {Functional Requirements} 
+
+	\subsection {Product - 1}
+
+		\newline If the given Input $\in R$, a hyperbolic sine value will be calculated and displayed by the function.
+
+
+	\subsection {Product - 2}
+		\newline If Input $\not\in$ Integer, then no value will be produced by the function.
+
+\section{Assumptions}
+	\subsection {ASSUME-1}
+	Even though the hyperbolic sine function has a domain of all possible real numbers, as the program will be programmed in java on a computer, there is a limit to the input that the user is allowed to provide due to the datatype, which is a maximum of +1.79769313486231570E+308 and a minimum of -1.79769313486231570E+308 respectively.
+
+	\subsection {ASSUME-2} 
+Given that decimal numbers can be input, the number of decimal points to consider is limited due to the data type. Hence, significant decimal points are the first 10 decimal points.
+
+ \begin{thebibliography}{9}
+        \bibitem{}
+        \url{http://www.mathcentre.ac.uk/resources/workbooks/mathcentre}
+
+        \bibitem{}
+        \url{hyperbolicfunctions.pdf}
+
+        \bibitem{}
+        \url{https://www.analyzemath.com/DomainRange/domain_range_functions.html}
+
+\end{thebibliography}\end{document}
