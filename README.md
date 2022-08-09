@@ -1,4 +1,4 @@
-# SOEN_6011_Summer_2022 (ID : ) F3 : sinh(x)
+# SOEN_6011_Summer_2022 (ID : 40094976) F3 : sinh(x)
 Individual repository for the SOEN 6011 , implementation of sinh(x) function :hyperbolic sine
 
 # Definition and how to calculate
