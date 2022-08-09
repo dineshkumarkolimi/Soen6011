@@ -7,7 +7,7 @@ import validation.ValidationUtil;
 /**
  * This class  implements sinhx function
  *
- * @author : dineshkumar
+ * @author : dineshkumar kolimi
  */
 public class SinhFunction {
 
